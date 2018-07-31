@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 
 
+import os
+import sys
 import pickle
 import numpy as np
-import os
 
 def load_CIFAR_batch(filename):
     """ load single cifar batch file """
@@ -34,5 +35,12 @@ def load_CIFAR10(ROOT):
 
 if __name__ == '__main__':
     print('do some test in data_utils')
-    Xtr, Ytr, Xte, Yte = load_CIFAR10('/Users/tinge/work/cs231n_working/cifar-10-batches-py')
+
+
+    if len(sys.argv) >= 2:
+        cifar10_root = sys.argv[1]
+    else:
+        cifar10_root = '/Users/tinge/work/cs231n_working/cifar-10-batches-py'
+    #Xtr, Ytr, Xte, Yte = load_CIFAR10('/data/work/cs231n/assignment1/cifar-10-batches-py')
+    Xtr, Ytr, Xte, Yte = load_CIFAR10(cifar10_root)
     print(Xtr, Ytr, Xte, Yte)

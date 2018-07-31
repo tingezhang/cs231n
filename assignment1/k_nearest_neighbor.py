@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 
 
-import numpy as np
 import rpdb
+import sys
+import numpy as np
 
 
 class KNearestNeighbor(object):
@@ -37,10 +38,16 @@ class KNearestNeighbor(object):
 if __name__ == '__main__':
     from data_utils import load_CIFAR10
 
-    test_count = 1000
+    test_count = 100
 
-    cifar10_dir = '/Users/tinge/work/cs231n_working/cifar-10-batches-py'
-    X_train, Y_train, X_test, Y_test = load_CIFAR10(cifar10_dir)
+    if len(sys.argv) >= 2:
+        cifar10_root = sys.argv[1]
+    else:
+        cifar10_root = '/Users/tinge/work/cs231n_working/cifar-10-batches-py'
+    #Xtr, Ytr, Xte, Yte = load_CIFAR10('/data/work/cs231n/assignment1/cifar-10-batches-py')
+    Xtr, Ytr, Xte, Yte = load_CIFAR10(cifar10_root)
+
+    X_train, Y_train, X_test, Y_test = load_CIFAR10(cifar10_root)
 
     classifier = KNearestNeighbor()
     classifier.fit(X_train, Y_train)
